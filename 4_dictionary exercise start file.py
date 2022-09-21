@@ -2,7 +2,8 @@
 
 def main():
     # Create a deck of cards.
-   
+    deck = create_deck()
+
 
     # Get the number of cards to deal.
     num_cards = int(input('How many cards should I deal? '))
@@ -10,6 +11,7 @@ def main():
 
 
     # Deal the cards.
+    deal_cards(deck,num_cards)
 
 
     
@@ -45,32 +47,53 @@ def create_deck():
             'Queen of Diamonds':10, 'King of Diamonds': 10}
 
     # Return the deck.
-
-
+    return deck
 
 
 # The deal_cards function deals a specified number of cards
 # from the deck.
 
 def deal_cards(deck, number):
+            #First argument should be dictionary, second should be the integer value
     # Initialize an accumulator for the hand value.
-
+    handValue = 0 
     
     
 
     # Make sure the number of cards to deal is not
     # greater than the number of cards in the deck.
 
-    
+    if number > 52: 
+        number = 52
     
 
     # Deal the cards and accumulate their values.
+    '''
     
+    for count in range (number): 
+        card,value = deck.popitem()
+        print(card)
+        handValue += value
+        #POP ITEM METHOD DOES NOT WORK
 
+    '''
+    import random
+    for count in range (number): 
+                #Will repeat the for loop as many times as the number of cards the user asks for 
+        card = random.choice(list(deck))
+                #list function coverts it into a list, only the keys are becoming a list
+                #Since its a list we can use the random.choice which is apart of the random module (import random)
+        print(card)
+                #prints out the name of the card
+        value = deck[card]
+                #need value of card by calling dictionary, get the key 
+        handValue += value
+                #Add to accumulator value to get total value of cards
 
-    
 
     # Display the value of the hand.
+
+    print('The value of the hand is:', handValue)
 
     
     
